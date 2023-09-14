@@ -1,0 +1,324 @@
+:root {/*paleta de colores*/
+    --blanco: #ffffff;
+    --negro: #212121;
+    --primario: #ffc107;
+    --secundario: #0097a7;
+    --gris: #757575;
+    --gris-claro: #DFE9F3;
+    
+
+}
+
+/**============PARA CONVERSION DE PX A REM globales,=====================*/
+
+html {/*para aplicar a todos los elementos y poder realizar la convercion de px a rem, con la instruccion de abajo*/
+    font-size: 62.5%;
+    box-sizing: border-box; /*ya no se incrementa el tamaño(px) de los elemento que se adicionan cuando se aplica el paddin o border etc*/
+    scroll-snap-type: y mandatory; /*propiedad para el scroll snap*/
+}
+
+/*scroll-snap, para que el se quede en una seccion especifica, y toque darle mas scroll para lograrlo*/
+.servicios,
+.navegacion-principal,
+.formulario {
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+}
+*, *:before, *:after { /*esta parte esta para aplicar a todos lo elementos el box-sizing explicito arriba*/
+    box-sizing: inherit;
+}
+body {
+    font-size: 16px;/* 1rem = 10px */
+    font-family: 'Krub', sans-serif; /*sera aplicado a todos los elementos*/
+    background-image: linear-gradient(to top, var(--gris-claro) 0%, var(--blanco) 90%);/*primer parametro es direccion "to top es de abajo hacia arriab, segundo parametro el primer color, tercer parametro el segundo color"*/
+}
+.boton { /*para darle forma a los botones*/
+    background-color: var(--secundario);
+    color: var(--blanco);
+    padding: 1rem 3rem;
+    margin-top: 1rem;
+    font-size: 2rem;
+    text-decoration: none;
+    text-transform: uppercase; /*para hacer el texto en mayuscula*/
+    font-weight: bold; /*bold es lo mismo de 700px*/
+    border-radius: .9rem; /*para que las esquinas se vean redondeadas*/
+    width: 90%; /*para que el boton ocupe mas espacio en pantallas pequeñas como el celular*/
+    text-align: center;
+    border: none;
+}
+
+@media (min-width: 768px) { /*el media queries para el boton*/
+    .boton {
+        width: auto;/*aqui con el media queries despues de que la pantalla sea mayor a 768px se resetea el boton y se vuelve pequeña y toma valores normales*/
+    }
+    
+}
+.boton:hover {
+    cursor: pointer; /*para que se vea no el puntero si no como una mano en los botones*/
+}
+
+.sombra {/*para generar la sombra al main*/
+    /*====codigo que nos genero la pagina css matic para el sombreado ======*/
+    -webkit-box-shadow: 0px 5px 15px 0px rgba(107,107,107,0.31);/*soportes para el box shadow y lo pueda soportar algunos navegadores*/
+    -moz-box-shadow: 0px 5px 15px 0px rgba(107,107,107,0.31);/*soportes para el box shadow y lo pueda soportar algunos navegadores*/
+    box-shadow: 0px 5px 15px 0px rgba(107,107,107,0.31);/*box-shadow es el que le da el sombreado*/
+    /*=========================================================================*/
+    background-color: var(--blanco);
+    padding: 2rem;
+    border-radius: 1rem ;
+}
+
+
+/*tipografia */
+h1 {
+    font-size: 3.8rem;
+
+}
+
+h2 {
+    font-size: 2.8rem;
+}
+
+h3 {
+    font-size: 1.8rem;
+}
+
+h1, h2, h3{
+    text-align: center;
+}
+
+
+/**======estilos para el titulo=======================*/
+
+/* se agrupa todo en los h1, h2, h3 de arriab 
+.titulo {para la clase titulo, que el proyecto viene siento la etiqueta h1
+    text-align: center;
+    font-size:3.8rem;
+}*/
+
+
+.titulo span { /*apunta lo que esta dentro de la clase titulo en la etiqueta span*/
+    font-size: 2rem; /*se le da un tamaño al elemento*/
+}
+
+/*=====utilidades============*/
+
+.w-sm-100 {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .w-sm-100 {
+        width: auto;
+    }
+}
+
+.flex {
+    display: flex;
+}
+
+.alinear-derecha {
+    justify-content: flex-end;
+    padding: 2rem;
+}
+
+/*=============estilos para la barra de navegacion principal=============================================*/
+
+.contenedor { /*se crea una segunda clase para la etiqueta <nav> y asi darle un fondo a ese espacio sin tocar los elementos de etiqueta <a>*/
+    max-width: 120rem; /*con el max-width se le pone un condicional en el que dice toma 1200px o 120rem como max si no por defecto toma el 100% que es el que trae por defaul*/
+    margin: 0 auto; /*se le da una margen y un auto en todas direcciones solo se abrevia para lograr ahorrar codigo*//*nos ayuda a centrar horizontal mente sin usar el display:flex, con el justify-center*/
+}
+
+
+.nav-bg {
+    background-color: var(--secundario);    
+}
+
+.navegacion-principal{
+    display: flex; /*los elementos se muestran de izquierda a derecha*/
+    flex-direction: column; /*se muestra los elementos en columna, pero para elementos menos a 768px ya que esta despues la media queries que indica que mayores a 768px cambia en que los elementos sean de izquierda a derecha*/
+}
+@media (min-width: 768px) {/*para el responsive de pantallas mayores a 768px*/
+    .navegacion-principal{
+        flex-direction: row; /*se muestren de izquieda ha derecha para pantallas mayores a 768px*/
+        justify-content: space-between; /*aqui centrass los elementos aplicados a pantallass mayores a 768px*/
+    }
+}
+
+.navegacion-principal a{
+    display: block; /*esto hace que tomen todo el espacio directamente los enlaces*/
+    text-align: center;/*esto centra los textos*/
+    color: var(--blanco); /*se usa el root de arriba para enviar como parametro el color preestablecido en nuestra paleta de colores*/
+    text-decoration: none;
+    font-size:2rem; /*se le asigna el tamaño a los elementos de la etiqueta <a> que estan incluidos en la la clase "navegacion-principal"*/
+    font-weight: bold;/*es igual a decir font-wight:700px le da un tamaño a las letras mayor y con negrita*/
+    padding: 1rem; /* se mueve al especificador para que el paddin se aplique solo al texto de las etiquetas a y el efecto hoover abajo se vea mejor*/
+}
+
+.navegacion-principal a:hover{ /*el hover es el que nos da el evento cuando el puntero se pone sobre el boton*/
+    background-color: var(--primario);
+    color: var(--negro); /*se aplica al texto*/
+}
+
+/*.navegacion-principal a:focus {
+    color:red;
+}*//* el focus es para dejar demarcado la opcion que eligio el usuairo*/
+
+
+
+/*==========Estilos para la seccion despues de la barra de navegacion=====================================*/
+
+.hero {/*como es la clase padre, se aplica a todo como tal, que para este caso seria la imagen quedando como de fondo */
+    background-image: url(../img/hero.jpg); /*se usa para indicar la ruta donde esta la imagen*/
+    background-repeat: no-repeat;/*para que la imagen no se repita*/
+    background-size: cover;/*la imagen va tomar todo el ancho disponible de la pagina*/
+    height: 45rem;
+    position: relative; /*para indicar que todo lo que esta dentro de esta seccion que es padre de lo que tenga dentro va a tomar su posicion relativa de el, todo lo que este dentro toma como 100% del campo esta seccion*/
+    margin-bottom: 2rem; /*para separar del hero todo los elementos siguientes*/
+}
+
+.contenido-hero {
+    position:absolute;
+    background-color: rgba( 0,0,0,0.7 );/*sintaxis anterior =="los tres primeros son rojo, negro, blanco y el cuarto valor es la transparencia"*/
+    background-color: rgb(  0 0 / 70% );/*sintaxis nueva =="los tres primeros son rojo, negro, blanco y el cuarto valor es la transparencia"*/
+    width: 100%;
+    height: 100%;
+
+    /*====codigo para centrar verticalmente con flexbox===*/
+    display: flex; /*flexbox*/
+    flex-direction: column;
+    align-items: center; /*se usa align-intems por que cuando la direccion es en columna se usa align-center:center para poder centrar los elementos*/
+    justify-content: center;
+    /*=============================*/
+
+
+}
+
+.contenido-hero h2,
+.contenido-hero p { /*para darle color a los textos de los elemnots h2 y p contenidps en la clase .contenido-hero*/
+    color: var(--blanco);
+
+}
+
+.contenido-hero .ubicacion { /*una clase que se creo para contener adentro los elementos y darles posiciones*/
+    display: flex; /*por default coloca todos los elemtos que contenga esa clase de izquierda a derecha*/
+    align-items: flex-end; /*para alinear ahacia abajo*/
+}
+
+/*====para la clase de servicios que es la clase principal, despues de los elementos de ubicacion======*/
+
+@media (min-width: 768px) {
+    .servicios {
+        display: grid;/*propiedad para habilitar CSS GRID*/
+        grid-template-columns: repeat(3, 1fr); /*(3, 1fr) quiere decir crear tres coluimnas de una fraccion fr = es una fraccion,o es como darle 33.3% a cada uno*/
+        column-gap: 1rem; /*separacion entre columnas*/
+
+    }
+}
+
+.servicio {
+    display: flex; /*el flexbox que nos coloca todo de izquierda a derecha*/
+    flex-direction: column; /*cambiamos la direccion del flexbox de arriba a abajo*/
+    align-items: center; /*para centrar*/
+}
+
+.servicio h3 {
+    color: var(--secundario);
+    font-weight: normal;
+}
+
+.servicio p {
+    line-height: 2; /*para ajustar el espacio entre lineas de texto de un parrafo, "el interlineado"*/
+    text-align: center;
+}
+
+.servicio .iconos {
+    height: 15rem;
+    width: 15rem;
+    background-color: var(--primario);
+    border-radius: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/*=========================seccion de contactenos=============================*/
+
+.formulario {
+    background-color: var(--gris);
+    width: min(60rem, 100%); /*utilizar el valor mas pequeño entoncess te ahorras un media queries y vealida si la pantalla es mas pequeña a 60rem utiliza el 100%, si la pantalla es superior al a 60rem utliza solo esa cantidad de espacio*/
+    margin: 0 auto; /*para centrarlo horizontalmente*//*centrar horizontalmente de esta manera se usa mas que todo para un elemento como un formulario cuyo padre no es un display flex ya que no tiene acceso a un justify-content ya que su padre no es un display:flex;*/
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.formulario fieldset {
+    border: none;
+}
+
+.formulario legend {
+    text-align: center;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--primario);
+}
+
+@media (min-width: 768px) {
+    .contenedor-campos {
+        display: grid;/*para aplicar el css grid y usar sus propiedades*/
+        grid-template-columns: 50% 50%; /*cantidad de columnas*/
+        grid-template-rows: auto auto 20rem;
+        column-gap: 1rem; /*separacion o distancia entre las columnas*/
+ 
+    }  
+    .campo:nth-child(3),
+    .campo:nth-child(4) { /*con nth.child(1), te selecciona si hay cuatro elementos con la misma clase te selecciona el primero o el segundo dependiendo del numero de parametro que le envies*/
+        grid-column: 1 / 3;
+    }
+}
+
+
+.campo {
+    margin-bottom: 1rem;
+}
+
+.campo label {
+    color: var(--blanco);
+    font-weight: bold;
+    margin-bottom: .5rem;
+    display: block; /*cada label tome el espacio que haya disponible*/
+}
+
+/*selector de atributo y escoger varios atributos especificos*/
+/*.campo input[type="text"],
+.campo input[type="tel"] { 
+    background-color: red;
+}*/
+
+.campo textarea {
+    height: 20rem;
+}
+
+.input-text { 
+    width: 100%; /*que tome todo el espacio disponible*/
+    border: none;
+    padding: 1.5rem;
+    border-radius: .5rem;
+}
+
+/*la clase de footer*/
+
+.footer {
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
